@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using STLFoodTruckFavorites3.Data;
 
 namespace STLFoodTruckFavorites3.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190819152028_AddFoodTruckAndLocationClasses")]
+    partial class AddFoodTruckAndLocationClasses
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -212,25 +214,6 @@ namespace STLFoodTruckFavorites3.Data.Migrations
                     b.ToTable("Locations");
                 });
 
-            modelBuilder.Entity("STLFoodTruckFavorites3.Models.LocationFoodTruck", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("FoodTruckID");
-
-                    b.Property<int>("LocationID");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("FoodTruckID");
-
-                    b.HasIndex("LocationID");
-
-                    b.ToTable("LocationFoodTrucks");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole")
@@ -273,19 +256,6 @@ namespace STLFoodTruckFavorites3.Data.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser")
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("STLFoodTruckFavorites3.Models.LocationFoodTruck", b =>
-                {
-                    b.HasOne("STLFoodTruckFavorites3.Models.FoodTruck", "FoodTruck")
-                        .WithMany("LocationFoodTrucks")
-                        .HasForeignKey("FoodTruckID")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("STLFoodTruckFavorites3.Models.Location", "Location")
-                        .WithMany("LocationFoodTrucks")
-                        .HasForeignKey("LocationID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

@@ -38,9 +38,13 @@ namespace STLFoodTruckFavorites3
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
+            //changed services.AddDefaultIndentity<IdentityUser> to this line and added .AddDefaultTokenProviders()
+
+            //services.AddIdentity<IdentityUser, IdentityRole>()
             services.AddDefaultIdentity<IdentityUser>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+                //.AddDefaultTokenProviders();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }

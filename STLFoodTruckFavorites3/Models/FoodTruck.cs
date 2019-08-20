@@ -11,6 +11,9 @@ namespace STLFoodTruckFavorites3.Models
         public string Name { get; set; }
         public string Description { get; set; }
 
+        public int CategoryID { get; set; }
+        public Category Category { get; set; }
+
         public List<LocationFoodTruck> LocationFoodTrucks { get; set; }
     }
 }

@@ -19,20 +19,20 @@ namespace STLFoodTruckFavorites3.Controllers
         {
             this.context = context;
         }
-        //[Authorize(Roles = "Admin")]
+        
         public IActionResult Index()
         {
             List<FoodTruckListViewModel> models = FoodTruckListViewModel.GetFoodTruckListViewModels(context);
             return View(models);
         }
+        [Authorize(Roles = "Admin")]
+        public IActionResult AdminIndex()
+        {
+            List<FoodTruckListViewModel> models = FoodTruckListViewModel.GetFoodTruckListViewModels(context);
+            return View(models);
+        }
 
-        //public IActionResult UserIndex()
-        //{
-        //    List<FoodTruckListViewModel> models = FoodTruckListViewModel.GetFoodTruckListViewModels(context);
-        //    return View(models);
-        //}
-
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpGet]
 
         public IActionResult Create()
@@ -40,7 +40,7 @@ namespace STLFoodTruckFavorites3.Controllers
             FoodTruckCreateViewModel model = new FoodTruckCreateViewModel();
             return View(model);
         }
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
 
         public IActionResult Create(FoodTruckCreateViewModel model)
@@ -51,7 +51,7 @@ namespace STLFoodTruckFavorites3.Controllers
         }
 
 
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpGet]
 
         public IActionResult Edit(int id)
@@ -59,7 +59,7 @@ namespace STLFoodTruckFavorites3.Controllers
             return View(model: new FoodTruckEditViewModel(context, id));
         }
 
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
 
         public IActionResult Edit(FoodTruckEditViewModel foodTruckEditViewModel, int id)

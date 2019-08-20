@@ -1,14 +1,13 @@
-﻿@model IEnumerable<STLFoodTruckFavorites3.ViewModels.FoodTruck.FoodTruckListViewModel>
+﻿
+@model IEnumerable<STLFoodTruckFavorites3.ViewModels.FoodTruck.FoodTruckListViewModel>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "AdminIndex";
 }
 
 <h1>Food Truck List</h1>
 
-<p>
-    @*<a asp-action="Create">Create New</a>*@
-</p>
+
 <table class="table">
     <thead>
         <tr>
@@ -38,9 +37,9 @@
                     @Html.DisplayFor(modelItem => item.Description)
                 </td>
                 <td>
-                    @*@Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })*@
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                        @*@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |*@
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ID })
                 </td>
             </tr>
         }

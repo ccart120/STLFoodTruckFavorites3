@@ -25,6 +25,7 @@ namespace STLFoodTruckFavorites3.Controllers
             List<FoodTruckListViewModel> models = FoodTruckListViewModel.GetFoodTruckListViewModels(context);
             return View(models);
         }
+
         [Authorize(Roles = "Admin")]
         public IActionResult AdminIndex()
         {

@@ -33,7 +33,7 @@ namespace STLFoodTruckFavorites3.Controllers
         public IActionResult Create(LocationCreateViewModel model)
         {
             model.Persist(context);
-            return RedirectToAction(actionName: nameof(Index)); ;
+            return RedirectToAction(actionName: nameof(Index));
 
         }
         

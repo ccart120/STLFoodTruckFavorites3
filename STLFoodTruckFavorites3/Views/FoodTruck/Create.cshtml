@@ -7,7 +7,7 @@
 
 <h1>Create</h1>
 
-<h4>FoodTruckCreateViewModel</h4>
+<h4>Create a Food Truck</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -24,14 +24,18 @@
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <button type="submit" value="Create" class="btn btn-primary"></button>
+                <label asp-for="Categories" class="control-label"></label>
+                <select asp-for="CategoryID" asp-items="Model.Categories"></select>
+            </div>
+            <div class="form-group">
+                <button type="submit" value="Create" class="btn btn-primary">Submit</button>
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="AdminIndex">Back to List</a>
 </div>
 
 @section Scripts {

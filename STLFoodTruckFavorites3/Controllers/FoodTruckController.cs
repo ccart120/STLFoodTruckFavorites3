@@ -37,7 +37,7 @@ namespace STLFoodTruckFavorites3.Controllers
 
         public IActionResult Create()
         {
-            FoodTruckCreateViewModel model = new FoodTruckCreateViewModel();
+            FoodTruckCreateViewModel model = new FoodTruckCreateViewModel(context);
             return View(model);
         }
         [Authorize(Roles = "Admin")]

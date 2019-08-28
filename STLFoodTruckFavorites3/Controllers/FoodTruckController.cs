@@ -26,6 +26,12 @@ namespace STLFoodTruckFavorites3.Controllers
             return View(models);
         }
 
+        public IActionResult Details(int id)
+        {
+           
+            return View(new FoodTruckDetailsViewModel(context, id));
+        }
+
         [Authorize(Roles = "Admin")]
         public IActionResult AdminIndex()
         {

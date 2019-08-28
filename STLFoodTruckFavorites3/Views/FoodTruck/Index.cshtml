@@ -32,7 +32,8 @@
             @Html.DisplayFor(modelItem => item.ID)
         </td>*@
             <td>
-                @Html.DisplayFor(modelItem => item.Name)
+                <a asp-controller="FoodTruck" asp-action="Details" asp-route-ID="@item.ID">@item.Name</a>
+                @*@Html.DisplayFor(modelItem => item.Name)*@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Description)

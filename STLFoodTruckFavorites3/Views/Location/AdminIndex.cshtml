@@ -5,7 +5,7 @@
         ViewData["Title"] = "AdminIndex";
     }
 
-    <h1>UserIndex</h1>
+    <h1>Locations</h1>
 
     <p>
         <a asp-action="Create">Create New</a>
@@ -13,9 +13,9 @@
     <table class="table">
         <thead>
             <tr>
-                <th>
+                @*<th>
                     @Html.DisplayNameFor(model => model.ID)
-                </th>
+                </th>*@
                 <th>
                     @Html.DisplayNameFor(model => model.Name)
                 </th>
@@ -26,9 +26,9 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    <td>
+                    @*<td>
                         @Html.DisplayFor(modelItem => item.ID)
-                    </td>
+                    </td>*@
                     <td>
                         @Html.DisplayFor(modelItem => item.Name)
                     </td>

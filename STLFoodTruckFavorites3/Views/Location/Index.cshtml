@@ -4,7 +4,9 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Locations List</h1>
+
+
+<h1>Locations</h1>
 
 <p>
     @*<a asp-action="Create">Create New</a>*@
@@ -13,8 +15,8 @@
     <thead>
         <tr>
             @*<th>
-                @Html.DisplayNameFor(model => model.ID)
-            </th>*@
+                    @Html.DisplayNameFor(model => model.ID)
+                </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.Name)
             </th>
@@ -25,20 +27,225 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>
+                @*<td>
                     @Html.DisplayFor(modelItem => item.ID)
-                </td>
+                </td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
                 <td>
                     @*@Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
                 </td>
             </tr>
         }
     </tbody>
+
 </table>
+
+<div class="container">
+
+    <a asp-area="" asp-controller="Location" asp-action="AdminIndex">   Admin</a>
+</div>
+
+@*G Maps Simple Map code*@
+@*<style>
+@*/* Always set the map height explicitly to define the size of the div
+    * element that contains the map. */*@
+@*#map {
+            height: 400px;
+            width: 700px;
+        }
+
+</style>
+<br />
+
+
+<div id="map"></div>
+<script>
+    var map;
+    function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: { lat: 38.6266804, lng: -90.1937073 },
+            zoom: 15
+        });
+    }
+</script>
+
+
+@*G Maps adds a marker*@
+
+@*<div id="map"></div>
+    <script>
+
+        function initMap() {
+            var myLatLng = { lat: 38.6266804, lng: -90.1937073 };
+
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 15,
+                center: myLatLng
+            });
+
+            var marker = new google.maps.Marker({
+                position: myLatLng,
+                map: map,
+                title: 'Hello World!'
+            });
+        }
+    </script>*@
+
+@*adding multiple markers on one map*@
+
+@*<style>
+        /*Always set the map height explicitly to define the size of the div
+        * element that contains the map.*/
+        #map {
+            height: 400px;
+            width: 700px;
+        }
+    </style>
+
+    <div id="map"></div>
+    <script>
+        function initMap() {
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 10,
+                center: { lat: 39, lng: -90 }
+            });
+
+            setMarkers(map);
+
+
+
+            function setMarkers(map) {
+                // Adds markers to the map.
+
+                // Marker sizes are expressed as a Size of X,Y where the origin of the image
+                // (0,0) is located in the top left of the image.
+
+                // Origins, anchor positions and coordinates of the marker increase in the X
+                // direction to the right and in the Y direction down.
+                var image = {
+                    url: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
+                    // This marker is 20 pixels wide by 32 pixels high.
+                    size: new google.maps.Size(20, 32),
+                    // The origin for this image is (0, 0).
+                    origin: new google.maps.Point(0, 0),
+                    // The anchor for this image is the base of the flagpole at (0, 32).
+                    anchor: new google.maps.Point(0, 32)
+                };
+                var shape = {
+                    coords: [1, 1, 1, 20, 18, 20, 18, 1],
+                    type: 'poly'
+                };
+
+                var fTLocations = [
+                    ['City Garden', 38.6266804, -90.1937073],
+                    ['Wells Fargo Advisors', 38.6323918, -90.2169744],
+                    ['Washington University Medical Campus', 38.6346634, -90.2604127],
+                    ['Nestle Purina', 38.6189221, -90.2007413]
+                    ['Cortex Commons', 38.6342204, 90.2537527]
+                ];
+
+
+                for (var i = 0; i < fTLocations.length; i++) {
+                    var fTLocation = fTLocations[i];
+                    var marker = new google.maps.Marker({
+                        position: { lat: fTLocation[1], lng: fTLocation[2] },
+                        map: map,
+                        icon: image,
+                        shape: shape,
+                        title: fTLocation[0],
+                        zIndex: fTLocation[3]
+                    });
+                }
+            }*@
+@*</script>*@
+
+<style>
+@*/* Always set the map height explicitly to define the size of the div
+    * element that contains the map. */*@
+#map {
+            height: 400px;
+            width: 700px;
+        }
+
+</style>
+<br />
+
+
+
+
+<div id="map"></div>
+<script>
+    function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 12,
+            center: { lat: 38.615, lng: -90.1935 }
+        });
+
+        addMarker({
+            coords: { lat: 38.6266804, lng: -90.1937073 },
+            content: 'City Garden - 801 Market St.'
+         })
+        addMarker({
+            coords: { lat: 38.6323918, lng: -90.2169744 },
+            content: 'Wells Fargo Advisors - Beaumont and Pine '
+        })
+        addMarker({
+            coords: { lat: 38.6346634, lng: -90.2604127 },
+            content: ' Wash U Medical Campus - 600 S.Taylor Ave.'
+            })
+        addMarker({
+            coords: { lat: 38.6189221, lng: -90.2007413 },
+            content: 'Nestle Purina - Choteau and South Ninth'
+        })
+        addMarker({
+            coords: { lat: 38.6342204, lng: -90.2537527 },
+            content: 'Cortex Commons - 4270 Duncan Ave.'
+        })
+           
+
+        function addMarker(ftLocation) {
+            var marker = new google.maps.Marker({
+                position: ftLocation.coords,
+                map: map
+            });
+            if (ftLocation.content) {
+                var infoWindow = new google.maps.InfoWindow({
+                    content: ftLocation.content
+                });
+                marker.addListener('click', function () {
+                    infoWindow.open(map, marker);
+                });
+            }
+        }
+
+
+        //var fTLocations = [
+        //    ['City Garden', 38.6266804, -90.1937073],
+        //    ['Wells Fargo Advisors', 38.6323918, -90.2169744],
+        //    ['Washington University Medical Campus', 38.6346634, -90.2604127],
+        //    ['Nestle Purina', 38.6189221, -90.2007413]
+        //    ['Cortex Commons', 38.6342204, 90.2537527]
+        //];
+
+        //function setMarkers(map) {
+        //    // Adds markers to the map.
+
+
+        //    for (i = 0; i < fTLocations.length; i++) {
+        //        var fTLocation = fTLocations[i];
+        //        marker = new google.maps.Marker({
+        //            position: { lat: fTLocation[1], lng: fTLocation[2] },
+        //            map: map,
+
+        //        });
+        //    }
+
+        }
+        </script>
+
 
 

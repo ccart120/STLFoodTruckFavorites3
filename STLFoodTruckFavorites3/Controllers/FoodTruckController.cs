@@ -4,9 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using STLFoodTruckFavorites3.Data;
 using STLFoodTruckFavorites3.Models;
 using STLFoodTruckFavorites3.ViewModels.FoodTruck;
+
 
 namespace STLFoodTruckFavorites3.Controllers
 {
@@ -19,12 +21,55 @@ namespace STLFoodTruckFavorites3.Controllers
         {
             this.context = context;
         }
-        
+        [HttpGet]
         public IActionResult Index()
         {
             List<FoodTruckListViewModel> models = FoodTruckListViewModel.GetFoodTruckListViewModels(context);
-            return View(models);
+            //var foodTrucks = from f in models
+            //             select f;
+
+            //if (!String.IsNullOrEmpty(searchString))
+            //{
+            //    foodTrucks = foodTrucks.Where(f => f.Name.Contains(searchString));
+            //}
+
+            //return View(await foodTrucks.ToListAsync());
+           return View(models);
         }
+
+
+
+        [HttpPost]
+        public string Index(string searchString, bool notUsed)
+        {
+            return "From [HttpPost]Index: filter on " + searchString;
+        }
+
+        //public JsonResult GetSearchingData(string SearchBy, string SearchValue)
+        //{
+        //    List<FoodTruck> foodTrucks = new List<FoodTruck>();
+        //    if (SearchBy == "ID")
+        //    {
+        //        try
+        //        {
+        //            int Id = Convert.ToInt32(SearchValue);
+        //            foodTrucks = context.FoodTrucks.Where(x => x.ID == Id || SearchValue == null).ToList();
+        //        }
+        //        catch (FormatException)
+        //        {
+        //            Console.WriteLine("{0} is not an ID", SearchValue);
+        //        }
+        //        //return Json(foodTrucks, JsonRequestBehavior.AllowGet);
+        //        return Json(foodTrucks);
+        //    }
+        //    else
+        //    {
+        //        foodTrucks = context.FoodTrucks.Where(x => x.Name.Contains(SearchValue) || SearchValue == null).ToList();
+        //        // return Json(foodTrucks, JsonRequestBehavior.AllowGet);
+        //        return Json(foodTrucks);
+
+        //    }
+        //}
 
         public IActionResult Details(int id)
         {

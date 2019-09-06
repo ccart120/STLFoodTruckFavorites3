@@ -9,9 +9,9 @@ namespace STLFoodTruckFavorites3.ViewModels.FoodTruck
 {
     public class FoodTruckListViewModel
     {
-        public static List<FoodTruckListViewModel> GetFoodTruckListViewModels(ApplicationDbContext context)
+        public static List<FoodTruckListViewModel> GetFoodTruckListViewModels(ApplicationDbContext context, string searchString)
         {
-            //List<Cheese> cheeses = context.Cheeses.Include(chs => chs.Category).ToList();
+            
             List<Models.FoodTruck> foodTrucks = context.FoodTrucks.Include(ft => ft.Category).ToList();
 
             List<FoodTruckListViewModel> foodTruckListViewModels = new List<FoodTruckListViewModel>();
@@ -24,6 +24,10 @@ namespace STLFoodTruckFavorites3.ViewModels.FoodTruck
                 viewModel.Category = foodTruck.Category.CategoryName;
                 foodTruckListViewModels.Add(viewModel);
             }
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                foodTruckListViewModels = foodTruckListViewModels.Where(f => f.Name.Contains(searchString)).ToList();
+            }
             return foodTruckListViewModels;
 
         }
@@ -35,5 +39,6 @@ namespace STLFoodTruckFavorites3.ViewModels.FoodTruck
         public string Name { get; set; }
         public string Category { get; set; }
         public string Description { get; set; }
+        //public List<FoodTruckListViewModel> SearchResults { get; set; }
     }
 }

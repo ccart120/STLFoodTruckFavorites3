@@ -21,29 +21,34 @@ namespace STLFoodTruckFavorites3.Controllers
         {
             this.context = context;
         }
+        
+
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult Index(string searchString)
         {
-            List<FoodTruckListViewModel> models = FoodTruckListViewModel.GetFoodTruckListViewModels(context);
-            //var foodTrucks = from f in models
-            //             select f;
+            List<FoodTruckListViewModel> models = FoodTruckListViewModel.GetFoodTruckListViewModels(context, searchString);
+            
 
-            //if (!String.IsNullOrEmpty(searchString))
-            //{
-            //    foodTrucks = foodTrucks.Where(f => f.Name.Contains(searchString));
-            //}
-
-            //return View(await foodTrucks.ToListAsync());
-           return View(models);
+            
+            return View(models);
         }
 
 
 
-        [HttpPost]
-        public string Index(string searchString, bool notUsed)
-        {
-            return "From [HttpPost]Index: filter on " + searchString;
-        }
+        //[HttpPost]
+        //public string Index(List<FoodTruckListViewModel> models, string searchString)
+        //{
+        //    var foodTrucks = from f in models
+        //             select f;
+
+        //    if (!String.IsNullOrEmpty(searchString))
+        //    {
+        //        foodTrucks = foodTrucks.Where(f => f.Name.Contains(searchString)).ToList();
+        //    }
+            
+        //   // return View(models);
+        //   /return "From [HttpPost]Index: filter on " + searchString;
+        //}
 
         //public JsonResult GetSearchingData(string SearchBy, string SearchValue)
         //{
@@ -78,9 +83,9 @@ namespace STLFoodTruckFavorites3.Controllers
         }
 
         [Authorize(Roles = "Admin")]
-        public IActionResult AdminIndex()
+        public IActionResult AdminIndex(string searchString)
         {
-            List<FoodTruckListViewModel> models = FoodTruckListViewModel.GetFoodTruckListViewModels(context);
+            List<FoodTruckListViewModel> models = FoodTruckListViewModel.GetFoodTruckListViewModels(context, searchString);
             return View(models);
         }
 

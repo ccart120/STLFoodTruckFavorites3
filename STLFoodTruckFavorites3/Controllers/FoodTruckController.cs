@@ -33,8 +33,8 @@ namespace STLFoodTruckFavorites3.Controllers
             return View(models);
         }
 
-
-
+       
+        
         //[HttpPost]
         //public string Index(List<FoodTruckListViewModel> models, string searchString)
         //{

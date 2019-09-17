@@ -16,12 +16,14 @@ namespace STLFoodTruckFavorites3.ViewModels.FoodTruck
 
         public FoodTruckDetailsViewModel(ApplicationDbContext context, int id)
         {
-            Models.FoodTruck foodTruck = context.FoodTrucks
-                .Single(f => f.ID == id);
+            //Models.FoodTruck foodTruck = context.FoodTrucks
+                //.Single(f => f.ID == id);
+            Models.FoodTruck foodTruck = context.FoodTrucks.Include(ft => ft.Category).Single(ft => ft.ID == id);
 
             FoodTruckDetailsViewModel model = new FoodTruckDetailsViewModel();
             Name = foodTruck.Name;
             Description = foodTruck.Description;
+            Category = foodTruck.Category.CategoryName;
 
             //LocationFoodTrucks = foodTruck.LocationFoodTrucks;
             //LocationNames = model.GetLocationNames(foodTruck);
@@ -31,6 +33,7 @@ namespace STLFoodTruckFavorites3.ViewModels.FoodTruck
         public int ID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+        public string Category { get; set; }
 
 
 

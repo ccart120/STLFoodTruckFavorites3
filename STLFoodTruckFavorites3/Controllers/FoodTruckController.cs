@@ -111,7 +111,7 @@ namespace STLFoodTruckFavorites3.Controllers
         [Authorize(Roles = "Admin")]
         [HttpGet]
 
-        public IActionResult Edit(int id)
+        public IActionResult Edit(int id, int categoryID)
         {
             return View(model: new FoodTruckEditViewModel(context, id));
         }
@@ -119,7 +119,7 @@ namespace STLFoodTruckFavorites3.Controllers
         [Authorize(Roles = "Admin")]
         [HttpPost]
 
-        public IActionResult Edit(FoodTruckEditViewModel foodTruckEditViewModel, int id)
+        public IActionResult Edit(FoodTruckEditViewModel foodTruckEditViewModel, int id, int categoryID)
         {
             foodTruckEditViewModel.Persist(context, id);
             return RedirectToAction(actionName: nameof(Index));

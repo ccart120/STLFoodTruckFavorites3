@@ -17,6 +17,7 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Description)
                 </th>
+                <th>Type of Food</th>
             </tr>
         </thead>
         <tbody>
@@ -29,6 +30,37 @@
                 <td>
                     @Html.DisplayFor(modelItem => Model.Description)
                 </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Category)
+                </td>
+        </tbody>
+    </table>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Menu Item
+                </th>
+                <th>
+                    Price
+                </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    Main Entree
+                </td>
+                <td>
+                    $9.99
+                </td>
+                
+            </tr>
+            <tr>
+                <td>Drinks</td>
+                <td>$1.99</td>
+            </tr>
         </tbody>
     </table>
 </div>
